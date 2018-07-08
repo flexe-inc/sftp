@@ -166,6 +166,11 @@ if [ ! -f "$userConfFinalPath" ]; then
     if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
         ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ''
     fi
+    # Ensure that the above files have the correct permissions
+    log "Limiting permissions to /etc/ssh/ssh_host_ed25519_key"
+    chmod 0400 /etc/ssh/ssh_host_ed25519_key
+    log "Limiting permissions to /etc/ssh/ssh_host_rsa_key"
+    chmod 0400 /etc/ssh/ssh_host_rsa_key
 fi
 
 # Source custom scripts, if any
